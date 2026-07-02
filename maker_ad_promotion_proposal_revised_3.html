@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메이커 푸시형 광고상품 구매전환 프로모션 제안</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background: #f4f3ee;
+    color: #1a1a19;
+    padding: 2rem 1rem;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  .header {
+    background: #1E2530;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  .header-icon {
+    width: 48px; height: 48px;
+    background: rgba(0,184,184,0.18);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 24px;
+  }
+  .header-title { font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 5px; }
+  .header-sub { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.55; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; font-weight: 500;
+    padding: 3px 9px; border-radius: 99px;
+  }
+  .chip-teal { background: rgba(0,184,184,0.2); color: #00B8B8; }
+  .chip-gray { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15); }
+
+  .section { background: #fff; border-radius: 14px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid #e8e6df; }
+  .sec-tag { font-size: 10px; font-weight: 600; letter-spacing: .1em; color: #00B8B8; text-transform: uppercase; margin-bottom: 5px; }
+  .sec-title { font-size: 17px; font-weight: 600; color: #1a1a19; margin-bottom: .6rem; }
+  .sec-body { font-size: 13.5px; color: #555; line-height: 1.65; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 13px; }
+  th { background: #f9f8f4; color: #888; font-weight: 600; text-align: left; padding: 9px 12px; font-size: 11.5px; border-bottom: 1px solid #e8e6df; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f0ede6; color: #333; }
+  tr:last-child td { border-bottom: none; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .highlight-row td { background: #fff7ed; font-weight: 600; }
+  .dim-row td { color: #bbb; }
+  .tag-mini { display:inline-block; font-size:10.5px; font-weight:600; padding:2px 7px; border-radius:6px; background:#eef9f7; color:#00B8B8; }
+  .tag-warn { display:inline-block; font-size:10.5px; font-weight:600; padding:2px 7px; border-radius:6px; background:#fff7ed; color:#e07b00; }
+
+  .m-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  @media(max-width:480px){ .m-grid { grid-template-columns: repeat(2,1fr); } }
+  .m-card { background: #f9f8f4; border-radius: 10px; padding: .8rem .9rem; }
+  .m-lbl { font-size: 10.5px; color: #999; margin-bottom: 3px; }
+  .m-val { font-size: 18px; font-weight: 700; color: #1a1a19; }
+  .m-sub { font-size: 10.5px; color: #aaa; margin-top: 2px; }
+
+  .insight-box {
+    background: #eef9f7; border-radius: 10px; padding: 1rem 1.1rem; margin-top: 1rem;
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  .insight-box .ic { font-size:16px; flex-shrink:0; }
+  .insight-box p { font-size: 13px; color: #2d6b66; line-height: 1.6; margin:0; }
+
+  .warn-box {
+    background: #fff7ed; border-radius: 10px; padding: 1rem 1.1rem; margin-top: 1rem;
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  .warn-box .ic { font-size:16px; flex-shrink:0; }
+  .warn-box p { font-size: 13px; color: #7a4a00; line-height: 1.6; margin:0; }
+
+  .subsec-title { font-size: 12.5px; font-weight: 600; color: #888; margin-top: 1.2rem; margin-bottom: 6px; }
+  .source-note { font-size: 10.5px; color: #bbb; margin-top: 10px; line-height: 1.55; }
+
+  .clist { list-style: none; margin-top: .6rem; }
+  .clist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13.5px; color: #555; line-height: 1.6;
+    padding: 9px 0; border-bottom: 1px solid #f0ede6;
+  }
+  .clist li:last-child { border-bottom: none; }
+  .ci {
+    width: 24px; height: 24px; border-radius: 7px;
+    background: rgba(0,184,184,0.1);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 13px; margin-top: 1px;
+  }
+  .clist strong { color: #1a1a19; font-weight: 600; }
+
+  .divider { border: none; border-top: 1px solid #f0ede6; margin: 1.2rem 0; }
+
+  .footer { text-align: center; font-size: 11px; color: #bbb; margin-top: 1.5rem; padding-bottom: 1rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 헤더 -->
+  <div class="header">
+    <div class="header-icon">📊</div>
+    <div>
+      <p class="header-title">메이커 푸시형 광고상품 구매전환 프로모션 제안</p>
+      <p class="header-sub">알림신청자 구간별 구매율 + 첫 프로젝트 미구매 현황 분석을 통해 식별한 사각지대 — 스타터 소액 패키지 아이디어 제안</p>
+      <div class="chips">
+        <span class="chip chip-teal">📈 집행경험 확대</span>
+        <span class="chip chip-teal">🌱 메이커 인큐베이팅</span>
+        <span class="chip chip-gray">최근 3개월 데이터</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 배경 -->
+  <div class="section">
+    <p class="sec-tag">배경</p>
+    <p class="sec-title">푸시형 광고상품 판매 현황</p>
+    <p class="sec-body">최근 3개월 오픈 캠페인 3,532건 중 <strong>푸시형 광고상품(앱푸시·카카오 친구톡)</strong> 구매는 754건, 구매율 21.3%. (디스플레이 배너 등 기타 광고상품은 분석 대상에서 제외)</p>
+
+    <p class="subsec-title">구매율 현황</p>
+    <div style="display:flex; align-items:center; gap:24px; margin-top:10px; flex-wrap:wrap;">
+      <svg width="140" height="140" viewBox="0 0 140 140" style="flex-shrink:0;">
+        <circle cx="70" cy="70" r="55" fill="none" stroke="#f0ede6" stroke-width="22"/>
+        <circle cx="70" cy="70" r="55" fill="none" stroke="#00B8B8" stroke-width="22"
+          stroke-dasharray="73.5 345.6" stroke-dashoffset="0"
+          transform="rotate(-90 70 70)"/>
+        <text x="70" y="65" text-anchor="middle" font-size="22" font-weight="700" fill="#1a1a19" font-family="-apple-system,sans-serif">21.3%</text>
+        <text x="70" y="84" text-anchor="middle" font-size="11" fill="#999" font-family="-apple-system,sans-serif">구매</text>
+      </svg>
+      <div style="flex:1; min-width:180px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+          <span style="width:12px; height:12px; border-radius:3px; background:#00B8B8; flex-shrink:0;"></span>
+          <span style="font-size:13px; color:#333;">구매 — <strong>754건 (21.3%)</strong></span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="width:12px; height:12px; border-radius:3px; background:#f0ede6; flex-shrink:0;"></span>
+          <span style="font-size:13px; color:#333;">미구매 — <strong>2,778건 (78.7%)</strong></span>
+        </div>
+      </div>
+    </div>
+    <div class="insight-box">
+      <div class="ic">💡</div>
+      <p>펀딩 목표금액 구간별 구매율은 13.8~23.5%로 큰 차이가 없어, 목표금액 기준으로는 구매/미구매를 가르는 뚜렷한 패턴이 없음. 다른 기준에서 사각지대를 식별할 필요.</p>
+    </div>
+  </div>
+
+  <!-- 분석 -->
+  <div class="section">
+    <p class="sec-tag">분석 상세</p>
+    <p class="sec-title">두 가지 기준에서 패턴 발견</p>
+    <p class="sec-body">알림신청자 수(캠페인 관심도)와 첫 프로젝트 여부(메이커 경험치) 두 기준으로 나눠보면, 공통적으로 같은 구간에서 미구매가 집중됨.</p>
+
+    <p class="subsec-title">① 알림신청자 구간별 — 앱푸시·카카오 친구톡 구매율</p>
+    <table>
+      <thead>
+        <tr><th>알림신청자 구간</th><th class="num">전체 메이커</th><th class="num">푸시 구매</th><th class="num">구매율</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row"><td>100~500명 <span class="tag-warn">저조</span></td><td class="num">1,477명</td><td class="num">160명</td><td class="num">10.8%</td></tr>
+        <tr class="highlight-row"><td>500~1,000명 <span class="tag-warn">저조</span></td><td class="num">501명</td><td class="num">103명</td><td class="num">20.6%</td></tr>
+        <tr><td>1,000~3,000명</td><td class="num">736명</td><td class="num">355명</td><td class="num">48.2%</td></tr>
+        <tr class="dim-row"><td>3,000~5,000명</td><td class="num">121명</td><td class="num">96명</td><td class="num">79.3%</td></tr>
+        <tr class="dim-row"><td>5,000명 이상</td><td class="num">48명</td><td class="num">44명</td><td class="num">91.7%</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">알림신청자 100명 이상 캠페인 기준. 앱푸시·카카오 친구톡 중 한 가지라도 구매한 경우를 구매로 집계. 푸시 광고는 와디즈 전체 유저 모수를 활용해 해당 캠페인 알림신청자를 추가 확보하는 상품으로, 알림신청자가 적은 구간일수록 오히려 필요도가 높은 상품임.</p>
+
+    <hr class="divider">
+
+    <p class="subsec-title">② 첫 프로젝트 메이커 — 광고상품(푸시+DA) 전체 구매 여부</p>
+    <table>
+      <thead>
+        <tr><th>구매 형태</th><th class="num">메이커 수</th><th class="num">비중</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>푸시+DA 모두 구매</td><td class="num">166명</td><td class="num">18.0%</td></tr>
+        <tr><td>푸시만 구매</td><td class="num">52명</td><td class="num">5.6%</td></tr>
+        <tr><td>DA만 구매</td><td class="num">72명</td><td class="num">7.8%</td></tr>
+        <tr class="highlight-row"><td>광고상품 전혀 미구매 <span class="tag-warn">저조</span></td><td class="num">644명</td><td class="num">69.8%</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">최근 3개월 첫 프로젝트 오픈 메이커 934명. DA는 push_category 미분류 AD_CENTER 상품 중 완료·진행중 상태 기준. 첫 프로젝트 메이커 10명 중 7명은 광고상품 자체를 한 번도 집행하지 않은 채 첫 펀딩을 진행함.</p>
+
+    <div class="insight-box">
+      <div class="ic">💡</div>
+      <p><strong>두 분석이 같은 지점을 가리킨다</strong> — 알림신청자가 적은 구간(100~1,000명)과 첫 프로젝트 메이커는 상당 부분 겹치는 그룹으로, 공통적으로 푸시 광고 집행률이 낮다. 광고비 집행에 대한 부담이 상대적으로 커 고민하는 케이스가 많을 것으로 추정되며, 결과적으로 알림신청자 추가 확보 기회를 살리지 못한 채 본펀딩으로 넘어가는 상황이 반복되는 것으로 보임.</p>
+    </div>
+  </div>
+
+  <!-- 제안 -->
+  <div class="section">
+    <p class="sec-tag">제안</p>
+    <p class="sec-title">스타터 소액 패키지</p>
+    <p class="sec-body">광고비 집행 허들을 낮춰 집행 경험을 만들고, 성과를 통해 재구매로 이어지는 인큐베이팅 구조. 알림신청자가 적은 초기 단계 메이커를 주 타겟으로 한다.</p>
+
+    <div class="insight-box">
+      <div class="ic">🎯</div>
+      <p><strong>왜 이 타겟인가</strong> — 알림신청자 100~1,000명 구간은 모수가 1,978명으로 전체의 55%를 차지하는 가장 큰 그룹이면서, 구매율은 10.8~20.6%로 가장 낮음. 또한 푸시 광고의 역할이 와디즈 전체 유저에게 노출해 알림신청자를 새로 확보하는 것이라면, 아직 알림신청자가 적은 이 구간이 오히려 푸시 광고가 가장 필요한 시점임.</p>
+    </div>
+
+    <p class="subsec-title">설계안</p>
+    <ul class="clist">
+      <li><div class="ci">🎯</div><div><strong>대상</strong> — 알림신청자 100~1,000명 구간 메이커 (첫 프로젝트 여부 무관). 필요 시 첫 프로젝트 한정으로 범위 조정 가능</div></li>
+      <li><div class="ci">📦</div><div><strong>상품 구성</strong> — 앱푸시 또는 카카오 친구톡 소액 단품, 또는 두 채널 묶음 패키지. 구체적인 구성·단가는 추후 설계</div></li>
+      <li><div class="ci">⏱️</div><div><strong>타이밍</strong> — 오픈예정 단계에서 알림신청자 확보가 가장 필요한 시점에 진입 유도. 본펀딩 전환 전까지 사용</div></li>
+      <li><div class="ci">🔁</div><div><strong>인큐베이팅 구조</strong> — 첫 집행 → 알림신청자 확보 성과 체감 → 재구매 유도. 스타터 패키지는 1회 또는 첫 프로젝트 한정 적용</div></li>
+      <li><div class="ci">💰</div><div><strong>할인폭·단가</strong> — 논의 필요. 원가 구조 확인 후 설계</div></li>
+    </ul>
+
+    <div class="warn-box">
+      <div class="ic">⚠️</div>
+      <p><strong>검토 필요 사항</strong> — 구매율이 낮은 이유가 단가 때문인지, 상품 인지 부족인지, 또는 알림신청자가 적은 단계라 광고 필요성을 느끼지 못하는 것인지는 데이터만으로 확인되지 않음. 파일럿 운영 후 전환율·재구매율을 실측하는 과정이 함께 필요.</p>
+    </div>
+  </div>
+
+  <!-- 출처 -->
+  <div class="section" style="background:#f9f8f4;">
+    <p class="sec-tag">데이터 출처</p>
+    <ul class="clist">
+      <li><div class="ci">🗄️</div><div><strong>Snowflake</strong> — FUNDING_CAMPAIGNS(펀딩 캠페인·알림신청자·메이커ID), AD_CENTER(광고상품 구매·채널·가격). push_category 기준 APP·KAKAOTALK 집계. LMS는 AD_CENTER 내 별도 카테고리로 존재하지 않아 미포함. 최근 3개월(whenopen 기준, isopen='Y') 오픈 캠페인 대상. 기준일 2026-06-30. 첫 프로젝트 여부는 동일 userid의 과거 오픈 캠페인 유무로 판별.</div></li>
+      <li><div class="ci">🔁</div><div><strong>교차검증</strong> — 전체 구매율은 이전 버전(29.7%)에서 재검증을 통해 21.3%(754/3,532건)로 정정. 알림신청자 구간별 분석은 카톡 단독 기준에서 앱푸시+카톡 합산 기준으로 변경.</div></li>
+      <li><div class="ci">💭</div><div><strong>한계</strong> — 구매율 저조의 원인(단가·인지·필요성)은 추정이며 데이터로 검증되지 않음. 구매군 펀딩 성과 우위는 상관관계이며 인과관계 불명. 할인폭은 원가 확인 전 가설 수준.</div></li>
+    </ul>
+  </div>
+
+  <p class="footer">Wadiz AD Business Team · 2026.06</p>
+</div>
+</body>
+</html>
